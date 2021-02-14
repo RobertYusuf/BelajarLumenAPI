@@ -19,8 +19,8 @@ class CreateBookTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->bigInteger('categori_id')->unsigned()->nullable();
-            $table->foreign('categori_id')
+            $table->bigInteger('category_id')->unsigned()->nullable();
+            $table->foreign('category_id')
                 ->references('id')->on('categories')
                 ->onDelete('set null');
 

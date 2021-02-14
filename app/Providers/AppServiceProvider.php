@@ -16,6 +16,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Repositories\Category\ICategoryRepository',
             'App\Repositories\Category\CategoryRepository'
+
+        );
+
+        $this->app->bind(
+            'App\Repositories\Book\IBookRepository',
+            'App\Repositories\Book\BookRepository'
+
         );
     }
 }

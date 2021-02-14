@@ -22,3 +22,10 @@ $router->group(['namespace' => 'V1', 'prefix' => 'categories'], function () use 
     $router->put('/{id}', 'CategoryController@update');
     $router->delete('/{id}', 'CategoryController@delete');
 });
+
+$router->group(['namespace' => 'V1', 'prefix' => 'books'], function () use ($router) {
+
+    $router->get('/{id}', 'BookController@showId');
+    $router->get('/', 'BookController@index');
+    $router->post('/{category_id}', 'BookController@create');
+});

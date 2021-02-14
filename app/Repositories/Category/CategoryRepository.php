@@ -30,8 +30,10 @@ class CategoryRepository implements ICategoryRepository
         $data->code = $request->code;
         $data->name = $request->name;
         $data->save();
-
-        return response()->json('Berhasil Tambah Data');
+        return response()->json([
+            'message' => 'Data berhasil ditambah',
+            'results' => $data
+        ]);
     }
 
     public function updateData($request, $id)
@@ -41,13 +43,20 @@ class CategoryRepository implements ICategoryRepository
         $data->name = $request->name;
         $data->save();
 
-        return response()->json($data);
+        return response()->json([
+            'message' => 'Data berhasil diubah',
+            'results' => $data
+        ]);
     }
 
     public function deleteData($id)
     {
         $data = Category::where('id', $id)->first();
+        $datadelete = $data;
         $data->delete();
-        return response('Berhasil Menghapus Data');
+        return response([
+            'message' => 'Data berhasil dihapus',
+            'results' => $datadelete
+        ]);
     }
 }
