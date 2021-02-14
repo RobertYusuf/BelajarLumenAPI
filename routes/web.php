@@ -21,11 +21,17 @@ $router->group(['namespace' => 'V1', 'prefix' => 'categories'], function () use 
     $router->post('/', 'CategoryController@create');
     $router->put('/{id}', 'CategoryController@update');
     $router->delete('/{id}', 'CategoryController@delete');
+
+    $router->get('/{category_id}/books/', 'BookController@showBookCat');
+    $router->get('/{category_id}/books/{id}', 'BookController@showIdCat');
+    $router->post('/{category_id}/books/', 'BookController@create');
+    $router->put('/{category_id}/books/{id}', 'BookController@update');
 });
 
 $router->group(['namespace' => 'V1', 'prefix' => 'books'], function () use ($router) {
 
     $router->get('/{id}', 'BookController@showId');
     $router->get('/', 'BookController@index');
-    $router->post('/{category_id}', 'BookController@create');
+    // $router->post('/{category_id}', 'BookController@create');
+    $router->delete('/{id}', 'BookController@delete');
 });
