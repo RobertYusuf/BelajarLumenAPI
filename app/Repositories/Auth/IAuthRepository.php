@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Book;
+namespace App\Repositories\Auth;
 
 interface IAuthRepository
 {
-    public function getRegister($request);
+    public function Auth($request);
 }

@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use App\Repositories\Book\IAuthRepository;
+use App\Http\Controllers\Controller;
+use App\Repositories\Auth\IAuthRepository;
 use Illuminate\Http\Request;
-use App\User;
 
 class AuthController extends Controller
 {
-    protected $repository;
+    protected $authRepo;
 
-    public function __construct(IAuthRepository $repository)
+    public function __construct(IAuthRepository $authRepo)
     {
-        $this->repository = $repository;
+        $this->authRepo = $authRepo;
     }
-    public function register(Request $request)
-    {
-        $auth = $this->repository->getRegister($request);
 
-        return response()->json([
-            "data" => $auth
-        ]);
+    public function auth(Request $request)
+    {
+        $token = $this->authRepo->Auth($request);
+
+        return $this->respondWithToken($token);
     }
 }

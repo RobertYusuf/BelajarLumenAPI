@@ -37,9 +37,12 @@ $router->group(['namespace' => 'V1', 'prefix' => 'books'], function () use ($rou
     $router->delete('/{id}', 'BookController@delete');
 });
 
-$router->group(['prefix' => 'api'], function () use ($router) {
-    // Matches "/api/register
-    $router->post('register', 'AuthController@register');
+
+$router->group(['namespace' => 'V1', 'prefix' => 'user'], function () use ($router) {
+    $router->post('/auth', 'AuthController@auth');
+    $router->post('/register', 'UserController@register');
+    $router->put('/update/{id}', 'UserController@update');
+    $router->delete('/delete/{id}', 'UserController@delete');
 });
 
 // $router->get('/login', function (Request $request) {

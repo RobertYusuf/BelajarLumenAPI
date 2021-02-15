@@ -24,5 +24,14 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Book\BookRepository'
 
         );
+        $this->app->bind(
+            'App\Repositories\User\IUserRepository',
+            'App\Repositories\User\UserRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Auth\IAuthRepository',
+            'App\Repositories\Auth\AuthRepository'
+        );
     }
 }

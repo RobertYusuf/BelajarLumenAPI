@@ -3,23 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
-use Laravel\Lumen\Auth\Authorizable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Lumen\Auth\Authorizable;
+
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model implements JWTSubject, AuthenticatableContract, JWTSubject
+class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
-    use Authenticatable;
-    // use Authenticatable, Authorizable;
-    // use Notifiable;
+    use Authenticatable, Authorizable;
+    use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    // protected $table = "users";
+
+    protected $table = 'users';
+
     protected $fillable = [
         'name', 'email',
     ];
@@ -32,6 +36,7 @@ class User extends Model implements JWTSubject, AuthenticatableContract, JWTSubj
     protected $hidden = [
         'password',
     ];
+
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
