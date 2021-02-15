@@ -1,5 +1,6 @@
 <?php
 
+use \Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -35,3 +36,26 @@ $router->group(['namespace' => 'V1', 'prefix' => 'books'], function () use ($rou
     // $router->post('/{category_id}', 'BookController@create');
     $router->delete('/{id}', 'BookController@delete');
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    // Matches "/api/register
+    $router->post('register', 'AuthController@register');
+});
+
+// $router->get('/login', function (Request $request) {
+//     $token = app('auth')->attempt($request->only('email', 'password'));
+
+//     return response()->json(compact('token'));
+// });
+// $router->group([
+
+//     'middleware' => 'api',
+//     'prefix' => 'auth'
+
+// ], function ($router) {
+
+//     $router->post('login', 'AuthController@login');
+//     $router->post('logout', 'AuthController@logout');
+//     $router->post('refresh', 'AuthController@refresh');
+//     $router->post('me', 'AuthController@me');
+// });

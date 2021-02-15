@@ -60,7 +60,7 @@ $app->singleton(
 */
 
 $app->configure('app');
-
+// $app->configure('jwt');
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -93,8 +93,9 @@ $app->routeMiddleware([
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
-$app->register(App\Providers\EventServiceProvider::class);
+// $app->register(App\Providers\EventServiceProvider::class);
 
+$app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

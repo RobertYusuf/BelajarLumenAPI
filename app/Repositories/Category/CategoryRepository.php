@@ -9,12 +9,12 @@ class CategoryRepository implements ICategoryRepository
 {
     public function getCategories($request)
     {
-        $categories = new Category;
+        $categories = Category::with('books')->get();
         $code = isset($request->code) ? $request->code : null;
         if ($code != null) {
             $categories = $categories->where('code', $code);
         }
-        $categories = $categories->get();
+        // $categories = $categories->get();
         return $categories;
     }
 
