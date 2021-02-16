@@ -13,6 +13,7 @@ class BookController extends Controller
     public function __construct(IBookRepository $repository)
     {
         $this->repository = $repository;
+        $this->middleware('auth', ['except' => ['index', 'showId', 'showBookCat', 'showIdCat']]);
     }
 
     public function index()
