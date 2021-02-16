@@ -40,25 +40,9 @@ $router->group(['namespace' => 'V1', 'prefix' => 'books'], function () use ($rou
 
 $router->group(['namespace' => 'V1', 'prefix' => 'user'], function () use ($router) {
     $router->post('/auth', 'AuthController@auth');
+    $router->get('/auth/me', 'AuthController@getUser');
+    $router->delete('/auth/del', 'AuthController@deleteTokenUser');
     $router->post('/register', 'UserController@register');
     $router->put('/update/{id}', 'UserController@update');
     $router->delete('/delete/{id}', 'UserController@delete');
 });
-
-// $router->get('/login', function (Request $request) {
-//     $token = app('auth')->attempt($request->only('email', 'password'));
-
-//     return response()->json(compact('token'));
-// });
-// $router->group([
-
-//     'middleware' => 'api',
-//     'prefix' => 'auth'
-
-// ], function ($router) {
-
-//     $router->post('login', 'AuthController@login');
-//     $router->post('logout', 'AuthController@logout');
-//     $router->post('refresh', 'AuthController@refresh');
-//     $router->post('me', 'AuthController@me');
-// });
