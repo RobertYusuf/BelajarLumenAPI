@@ -35,6 +35,8 @@ $router->group(['namespace' => 'V1', 'prefix' => 'books'], function () use ($rou
     $router->get('/', 'BookController@index');
     // $router->post('/{category_id}', 'BookController@create');
     $router->delete('/{id}', 'BookController@delete');
+    $router->put('/add/{id}', 'BookController@addBookUser');
+    $router->put('/delete/{id}', 'BookController@deleteBookUser');
 });
 
 

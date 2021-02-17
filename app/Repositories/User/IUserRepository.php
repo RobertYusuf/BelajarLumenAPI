@@ -8,4 +8,7 @@ interface IUserRepository
     public function updateUser($request);
     public function deleteUser();
     // public function getAuthUser($request);
+
+
+
 }

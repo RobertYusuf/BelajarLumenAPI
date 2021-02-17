@@ -65,4 +65,11 @@ class UserRepository implements IUserRepository
 
         return response()->json(['User Already Deleted']);
     }
+
+    public function addBook()
+    {
+    }
+    public function deleteBook()
+    {
+    }
 }

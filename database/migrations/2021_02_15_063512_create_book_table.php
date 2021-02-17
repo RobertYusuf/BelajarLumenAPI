@@ -19,14 +19,19 @@ class CreateBookTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('year')->nullable();
+
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')
                 ->references('id')->on('categories')
                 ->onDelete('set null');
 
-            $table->string('name')->nullable();
-            $table->text('description')->nullable();
-            $table->integer('year')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('set null');
         });
     }
 

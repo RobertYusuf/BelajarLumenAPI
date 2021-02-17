@@ -13,7 +13,7 @@ class BookController extends Controller
     public function __construct(IBookRepository $repository)
     {
         $this->repository = $repository;
-        $this->middleware('auth', ['except' => ['index', 'showId', 'showBookCat', 'showIdCat']]);
+        // $this->middleware('auth', ['except' => ['index', 'showId', 'showBookCat', 'showIdCat']]);
     }
 
     public function index()
@@ -74,6 +74,23 @@ class BookController extends Controller
 
         return response()->json([
             "data" => $books
+        ]);
+    }
+
+    public function addBookUser($id)
+    {
+        $book = $this->repository->addBookUser($id);
+
+        return response()->json([
+            "data" => $book
+        ]);
+    }
+    public function deleteBookUser($id)
+    {
+        $respon = $this->repository->deleteBookUser($id);
+
+        return response()->json([
+            "data" => $respon
         ]);
     }
 }

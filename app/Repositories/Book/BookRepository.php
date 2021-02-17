@@ -71,10 +71,10 @@ class BookRepository implements IBookRepository
 
     public function updateBook($request, $id, $category_id)
     {
-        $categories = Category::find($category_id);
+        // $categories = Category::find($category_id);
         $book = Book::find($id);
         try {
-            $categories = Category::findOrFail($category_id);
+            Category::findOrFail($category_id);
         } catch (ModelNotFoundException $e) {
             return response('Category not found', 404);
         }
@@ -93,11 +93,46 @@ class BookRepository implements IBookRepository
     public function deleteBook($id)
     {
         $data = Book::where('id', $id)->first();
-        $datadelete = $data;
+        $dataDelete = $data;
         $data->delete();
         return response([
             'message' => 'Data berhasil dihapus',
-            'results' => $datadelete
+            'results' => $dataDelete
         ]);
+    }
+
+    public function addBookUser($id)
+    {
+        $book = Book::find($id);
+        $accaount = auth()->user();
+
+        $user_id = $accaount->id;
+        if ($book->user_id == null) {
+            $book->user_id = $user_id;
+            $book->save();
+            return response()->json(['Buku Berhasil DItambahkan']);
+        } else {
+            return response()->json(['Buku Tidak Bisa Dipinjam , masih dipinjam']);
+        }
+        // $book->user_id = $user_id;
+        // $book->save();
+    }
+    public function deleteBookUser($id)
+    {
+        $book = Book::find($id);
+        // $accaount = auth()->user();
+        // $user_id = $accaount->id;
+        $accaount = auth()->user();
+        $user_id = $accaount->id;
+
+        if ($user_id == $book->user_id) {
+            $book->user_id = null;
+            $book->save();
+            return response()->json(['Buku DI Hapus Dari User']);
+        }
+        return response()->json(['TOken tidak sesuai']);
+
+        // $book->user_id = null;
+        // $book->save();
     }
 }
