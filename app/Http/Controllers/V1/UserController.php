@@ -42,4 +42,32 @@ class UserController extends Controller
             "data" => $user
         ]);
     }
+
+    public function getAllUser()
+    {
+        $user = $this->userRepo->getAllUser();
+
+        return response()->json([
+            "data" => $user
+        ]);
+    }
+    public function getUser()
+    {
+        $token = $this->userRepo->getAuthUser();
+
+        // return $this->respondWithToken($token);
+        // $books = $this->repository->getAllBook();
+
+        return response()->json([
+            "data" => $token
+        ]);
+    }
+
+    public function deleteTokenUser()
+    {
+        $data = $this->userRepo->deleteToken();
+        return response()->json([
+            "Status" => "Token Has Been Deleted"
+        ]);
+    }
 }

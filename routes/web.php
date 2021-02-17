@@ -42,8 +42,9 @@ $router->group(['namespace' => 'V1', 'prefix' => 'books'], function () use ($rou
 
 $router->group(['namespace' => 'V1', 'prefix' => 'user'], function () use ($router) {
     $router->post('/auth', 'AuthController@auth');
-    $router->get('/auth/me', 'AuthController@getUser');
-    $router->delete('/auth/del', 'AuthController@deleteTokenUser');
+    $router->get('/me', 'UserController@getUser');
+    $router->get('/all', 'UserController@getAllUser');
+    $router->delete('/delToken', 'UserController@deleteTokenUser');
     $router->post('/register', 'UserController@register');
     $router->put('/update', 'UserController@update');
     $router->delete('/delete', 'UserController@delete');

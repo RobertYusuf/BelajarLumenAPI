@@ -21,23 +21,23 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
-    public function getUser()
-    {
-        $token = $this->authRepo->getAuthUser();
+    // public function getUser()
+    // {
+    //     $token = $this->authRepo->getAuthUser();
 
-        // return $this->respondWithToken($token);
-        // $books = $this->repository->getAllBook();
+    //     // return $this->respondWithToken($token);
+    //     // $books = $this->repository->getAllBook();
 
-        return response()->json([
-            "data" => $token
-        ]);
-    }
+    //     return response()->json([
+    //         "data" => $token
+    //     ]);
+    // }
 
-    public function deleteTokenUser()
-    {
-        $data = $this->authRepo->deleteToken();
-        return response()->json([
-            "Status" => "Token Has Been Deleted"
-        ]);
-    }
+    // public function deleteTokenUser()
+    // {
+    //     $data = $this->authRepo->deleteToken();
+    //     return response()->json([
+    //         "Status" => "Token Has Been Deleted"
+    //     ]);
+    // }
 }

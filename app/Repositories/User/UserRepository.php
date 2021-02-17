@@ -66,10 +66,23 @@ class UserRepository implements IUserRepository
         return response()->json(['User Already Deleted']);
     }
 
-    public function addBook()
+    public function getAllUser()
     {
+        return User::with('books')->get();
     }
-    public function deleteBook()
+
+    public function getAuthUser()
     {
+        $profile = auth()->user()->id;
+        $oke = User::with('books')->find($profile);
+        return response()->json($oke);
+    }
+
+    public function deleteToken()
+    {
+        $token = JWTAuth::getToken();
+        if ($token) {
+            JWTAuth::setToken($token)->invalidate();
+        }
     }
 }
