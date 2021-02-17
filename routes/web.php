@@ -43,6 +43,6 @@ $router->group(['namespace' => 'V1', 'prefix' => 'user'], function () use ($rout
     $router->get('/auth/me', 'AuthController@getUser');
     $router->delete('/auth/del', 'AuthController@deleteTokenUser');
     $router->post('/register', 'UserController@register');
-    $router->put('/update/{id}', 'UserController@update');
-    $router->delete('/delete/{id}', 'UserController@delete');
+    $router->put('/update', 'UserController@update');
+    $router->delete('/delete', 'UserController@delete');
 });

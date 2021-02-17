@@ -25,18 +25,18 @@ class UserController extends Controller
         ]);
     }
 
-    public function update($id, Request $request)
+    public function update(Request $request)
     {
-        $user =  $this->userRepo->updateUser($id, $request);
+        $user =  $this->userRepo->updateUser($request);
 
         return response()->json([
             "data" => $user
         ]);
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $user = $this->userRepo->deleteUser($id);
+        $user = $this->userRepo->deleteUser();
 
         return response()->json([
             "data" => $user

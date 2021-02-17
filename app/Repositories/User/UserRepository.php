@@ -15,14 +15,13 @@ class UserRepository implements IUserRepository
 {
     public function addUser($request)
     {
-
         try {
             $user = new User;
             $user->name = $request->name;
-
             $user->email = $request->email;
             $plainPassword = $request->password;
             $user->password = app('hash')->make($plainPassword);
+            $user->role = 'Client';
             $user->save();
             return $user;
             // $user = $request->input('user');
@@ -36,8 +35,10 @@ class UserRepository implements IUserRepository
         }
     }
 
-    public function updateUser($id, $request)
+    public function updateUser($request)
     {
+        $accaount = auth()->user();
+        $id = $accaount->id;
         $user = User::find($id);
         if (!$user) {
             return $user;
@@ -51,8 +52,10 @@ class UserRepository implements IUserRepository
         return $user;
     }
 
-    public function deleteUser($id)
+    public function deleteUser()
     {
+        $accaount = auth()->user();
+        $id = $accaount->id;
         $user = User::find($id);
         if (!$user) {
             return false;
@@ -60,6 +63,6 @@ class UserRepository implements IUserRepository
 
         $user->delete();
 
-        return true;
+        return response()->json(['User Already Deleted']);
     }
 }

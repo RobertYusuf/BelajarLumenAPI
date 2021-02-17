@@ -5,7 +5,7 @@ namespace App\Repositories\User;
 interface IUserRepository
 {
     public function addUser($request);
-    public function updateUser($id, $request);
-    public function deleteUser($id);
+    public function updateUser($request);
+    public function deleteUser();
     // public function getAuthUser($request);
 }
