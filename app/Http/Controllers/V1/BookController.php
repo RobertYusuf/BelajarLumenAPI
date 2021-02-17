@@ -14,6 +14,7 @@ class BookController extends Controller
     {
         $this->repository = $repository;
         // $this->middleware('auth', ['except' => ['index', 'showId', 'showBookCat', 'showIdCat']]);
+        $this->middleware('authRole', ['except' => ['index', 'create', 'update', 'delete']]);
     }
 
     public function index()

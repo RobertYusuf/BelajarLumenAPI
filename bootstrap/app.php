@@ -60,7 +60,7 @@ $app->singleton(
 */
 
 $app->configure('app');
-// $app->configure('jwt');
+$app->configure('jwt');
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -78,6 +78,7 @@ $app->middleware([
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
+    'authRole' => App\Http\Middleware\AuthRoleMiddleware::class
 ]);
 
 /*
